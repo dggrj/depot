@@ -11,7 +11,13 @@
     <%= sanitize(product.description) %>
     <div class="price_line">
       <span class="price"><%= number_to_currency(product.price) %></span>
-
+      <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
     </div>
   </div>
+<% end %>
+
+<% if @count %>
+<div class="footer">
+	You've browsed the selection <%= pluralize(@count, "time") %> this session.
+</div>
 <% end %>
