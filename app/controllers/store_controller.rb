@@ -1,4 +1,6 @@
 class StoreController < ApplicationController
+  skip_before_filter :authorize
+  
   def index
     @products = Product.order(:title)
     session[:store_index_count] ||= 0
@@ -6,6 +8,7 @@ class StoreController < ApplicationController
     if count > 5
       @count = count
     end
+    @cart = current_cart
   end
 
 end

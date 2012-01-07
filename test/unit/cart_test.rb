@@ -29,11 +29,11 @@ class CartTest < ActiveSupport::TestCase
   test "verify shopping cart total" do
     cart = Cart.create
     ruby = products(:ruby)
-#    debugger
-    cart.add_product(ruby.id).save!
-    assert_equal 49.50, cart.total_price
-    cart.add_product(ruby.id).save!
+    cart.add_product(ruby.id).save
+
+    cart.add_product(ruby.id).save
     assert_equal 99.0, cart.total_price
+    
     cart.add_product(products(:prodone).id).save!
     assert_equal 108.99, cart.total_price
   end

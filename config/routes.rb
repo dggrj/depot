@@ -7,6 +7,18 @@
 # Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
 #---
 Depot::Application.routes.draw do
+  get 'admin' => "admin#index"
+
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  resources :users
+
+  resources :orders
+
   resources :line_items
 
   resources :carts
@@ -61,6 +73,18 @@ Depot::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  resources :products do
+    member do
+      get 'who_bought'
+    end
+  end
+
+  resources :line_items do
+    member do
+      post 'decrement'
+    end
+  end
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
